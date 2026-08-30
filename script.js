@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCommunityForm();
     loadCommunityMembers();
     initGarageCatalog();
+    initBaliSpots();
 });
 
 /* ==========================================================================
@@ -664,5 +665,346 @@ function escapeHtml(text) {
     const div = document.createElement('div');
     div.innerText = text;
     return div.innerHTML;
+}
+
+/* ==========================================================================
+   7. Rekomendasi Spot Tongkrongan Vespa di Bali (Interactive Feature)
+   ========================================================================== */
+const baliSpotsDatabase = [
+    {
+        id: 'canggu-scooter-corner',
+        name: 'Deus Ex Machina & Canggu Scooter Corner',
+        area: 'Canggu, Badung',
+        regionGroup: 'canggu',
+        vibe: '☕ Coffee & Custom Culture',
+        hours: '🕒 07.00 - 23.00 WITA',
+        image: 'images/vespasprint.jpg',
+        rating: '⭐ 4.9 (Sangat Ramai Weekend)',
+        description: 'Spot kumpul paling hits bagi anak Vespa matic & custom di kawasan Canggu. Cafe bernuansa tropical, workshop custom, dan live music malam minggu.',
+        tags: ['#CangguVibes', '#CustomVespa', '#CoffeeChill', '#LiveMusic'],
+        mapsUrl: 'https://maps.google.com/?q=Deus+Ex+Machina+Canggu+Bali'
+    },
+    {
+        id: 'kuta-seminyak-sunset',
+        name: 'Kuta Beach & Seminyak Sunset Point',
+        area: 'Kuta - Seminyak',
+        regionGroup: 'kuta',
+        vibe: '🌅 Sunset & Beach Night Ride',
+        hours: '🕒 16.30 - 22.00 WITA',
+        image: 'images/vespamatic.jpg',
+        rating: '⭐ 4.8 (Favorit Senja)',
+        description: 'Titik kumpul favorit keliling (rolling ride) sore hari menyusuri pesisir pantai Kuta & Seminyak sambil menikmati sunset spektakuler Pulau Dewata.',
+        tags: ['#SunsetRide', '#BeachVibes', '#NightRide', '#KelapaMuda'],
+        mapsUrl: 'https://maps.google.com/?q=Pantai+Kuta+Bali'
+    },
+    {
+        id: 'sanur-beachfront-hub',
+        name: 'Sanur Beachfront Scooter Hub',
+        area: 'Sanur, Denpasar',
+        regionGroup: 'sanur',
+        vibe: '☕ Morning Sunmori & Chill',
+        hours: '🕒 06.00 - 11.00 WITA',
+        image: 'images/vespaclassic.jpg',
+        rating: '⭐ 4.9 (Sunmori Hub)',
+        description: 'Basecamp Sunmori (Sunday Morning Ride) tepi pantai Sanur. Tempat favorit menikmati kopi Bali, nasi jinggo hangat, dan terbitnya matahari pagi.',
+        tags: ['#SunmoriSanur', '#KopiBali', '#VespaClassic', '#SunriseRide'],
+        mapsUrl: 'https://maps.google.com/?q=Pantai+Sanur+Bali'
+    },
+    {
+        id: 'ubud-ridge-coffee',
+        name: 'Ubud Rice Terrace & Heritage Ride',
+        area: 'Campuhan, Ubud',
+        regionGroup: 'ubud',
+        vibe: '🌿 Nature Ride & Vintage Vespa',
+        hours: '🕒 08.00 - 21.00 WITA',
+        image: 'images/vespa_super150.jpg',
+        rating: '⭐ 4.7 (Classic & Serene)',
+        description: 'Rute touring dan spot santai komunitas Vespa 2-Tak di Ubud. Dikelilingi persawahan hijau, udara segar pedesaan, dan kedai kopi bernuansa artistik.',
+        tags: ['#UbudScooter', '#Vespa2Tak', '#NatureTouring', '#ArtCafe'],
+        mapsUrl: 'https://maps.google.com/?q=Campuhan+Ubud+Bali'
+    },
+    {
+        id: 'denpasar-scooter-basecamp',
+        name: 'Denpasar Scooterist Basecamp & Hub',
+        area: 'Kota Denpasar',
+        regionGroup: 'denpasar',
+        vibe: '🛠️ Basecamp & Kopdar Malam',
+        hours: '🕒 18.00 - 00.00 WITA',
+        image: 'images/vespa_px150.jpg',
+        rating: '⭐ 4.9 (Komunitas Lokal)',
+        description: 'Pusat kumpul utama klub & independen Scooterist Bali. Tempat berbagi pengalaman berkendara, info sparepart langka, dan silaturahmi antar generasi Vespa.',
+        tags: ['#ScooteristBali', '#KopdarMalam', '#GarageTalk', '#Brotherhood'],
+        mapsUrl: 'https://maps.google.com/?q=Denpasar+Bali'
+    },
+    {
+        id: 'kintamani-altitude-point',
+        name: 'Kintamani Altitude Scooter Point',
+        area: 'Penelokan, Kintamani',
+        regionGroup: 'kintamani',
+        vibe: '⛰️ Mountain Touring & Fog Coffee',
+        hours: '🕒 05.30 - 17.00 WITA',
+        image: 'images/vespa_pts100.jpg',
+        rating: '⭐ 5.0 (Top Touring Spot)',
+        description: 'Destinasi touring tertinggi anak Vespa di Bali dengan elevasi >1.400 mdpl. Pemandangan spektakuler Gunung & Danau Batur serta kedai kopi sejuk di atas awan.',
+        tags: ['#KintamaniTouring', '#AboveTheClouds', '#VespaGTS', '#BaturView'],
+        mapsUrl: 'https://maps.google.com/?q=Penelokan+Kintamani+Bali'
+    }
+];
+
+let activeBaliRegionFilter = 'all';
+let baliSearchQuery = '';
+
+function initBaliSpots() {
+    // 1. Inject Modal HTML into body if missing
+    if (!document.getElementById('bali-spots-modal-overlay')) {
+        const baliModalHTML = `
+            <div id="bali-spots-modal-overlay" class="vespa-modal-overlay">
+                <div class="vespa-modal-card bali-spots-modal-card">
+                    <button class="modal-close-btn" id="bali-modal-close-btn" aria-label="Tutup Modal">✕</button>
+                    
+                    <div class="bali-modal-header">
+                        <span class="category-badge-pill">📍 PULAU DEWATA • SCOOTER SPOT GUIDE</span>
+                        <h2>Spot Tongkrongan Vespa di Bali 🛵</h2>
+                        <p>Daftar tempat kumpul, lokasi Sunmori, rute Night Ride &amp; cafe favorit komunitas Vespa Bali.</p>
+                    </div>
+
+                    <div class="bali-modal-controls">
+                        <div class="bali-filter-tabs">
+                            <button class="bali-tab-btn active" data-region="all">🌐 Semua Spot (6)</button>
+                            <button class="bali-tab-btn" data-region="canggu">🌊 Canggu &amp; Seminyak</button>
+                            <button class="bali-tab-btn" data-region="sanur">🌅 Kuta &amp; Sanur</button>
+                            <button class="bali-tab-btn" data-region="ubud">🌿 Ubud &amp; Denpasar</button>
+                            <button class="bali-tab-btn" data-region="kintamani">⛰️ Kintamani Mountain</button>
+                        </div>
+                        <div class="garage-search-box bali-search-box">
+                            <span class="garage-search-icon">🔍</span>
+                            <input type="text" id="bali-search-input" placeholder="Cari nama spot, kawasan, atau vibe (misal: Sunset, Sunmori, Kopi)...">
+                        </div>
+                    </div>
+
+                    <div class="bali-modal-body">
+                        <div id="bali-modal-grid" class="bali-spots-grid">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', baliModalHTML);
+
+        // Bind Modal Close listeners
+        const overlay = document.getElementById('bali-spots-modal-overlay');
+        const closeBtn = document.getElementById('bali-modal-close-btn');
+
+        if (closeBtn) closeBtn.addEventListener('click', () => closeBaliModal());
+        if (overlay) {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) closeBaliModal();
+            });
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && overlay && overlay.classList.contains('open')) {
+                closeBaliModal();
+            }
+        });
+
+        // Bind Search & Filter inside modal
+        const searchInput = document.getElementById('bali-search-input');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                baliSearchQuery = e.target.value.trim().toLowerCase();
+                renderBaliSpotsModalGrid();
+            });
+        }
+
+        const filterBtns = document.querySelectorAll('.bali-tab-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                activeBaliRegionFilter = btn.dataset.region || 'all';
+                renderBaliSpotsModalGrid();
+            });
+        });
+    }
+
+    // 2. Attach click listener to trigger card on index page
+    const triggerCard = document.getElementById('spot-bali-trigger');
+    if (triggerCard) {
+        triggerCard.addEventListener('click', () => {
+            openBaliModal();
+        });
+    }
+
+    // Attach to any other elements with data-open-bali-modal
+    document.querySelectorAll('[data-open-bali-modal]').forEach(el => {
+        el.addEventListener('click', (e) => {
+            e.preventDefault();
+            openBaliModal();
+        });
+    });
+
+    // 3. Render quick preview grid on page if container exists
+    renderBaliQuickPreview();
+}
+
+function openBaliModal() {
+    const overlay = document.getElementById('bali-spots-modal-overlay');
+    if (!overlay) return;
+
+    renderBaliSpotsModalGrid();
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeBaliModal() {
+    const overlay = document.getElementById('bali-spots-modal-overlay');
+    if (overlay) {
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+}
+
+function getFavoriteBaliSpots() {
+    try {
+        const stored = localStorage.getItem('vespa_fav_bali_spots');
+        return stored ? JSON.parse(stored) : [];
+    } catch (e) {
+        return [];
+    }
+}
+
+function toggleFavoriteBaliSpot(spotId) {
+    let favorites = getFavoriteBaliSpots();
+    const spot = baliSpotsDatabase.find(s => s.id === spotId);
+    if (!spot) return;
+
+    if (favorites.includes(spotId)) {
+        favorites = favorites.filter(id => id !== spotId);
+        showToast(`Spot "${spot.name}" dihapus dari favorit.`);
+    } else {
+        favorites.push(spotId);
+        showToast(`Spot "${spot.name}" disimpan ke favorit kamu! 📍⭐`);
+    }
+
+    localStorage.setItem('vespa_fav_bali_spots', JSON.stringify(favorites));
+    renderBaliSpotsModalGrid();
+    renderBaliQuickPreview();
+}
+
+function filterBaliSpots() {
+    let filtered = baliSpotsDatabase;
+
+    if (activeBaliRegionFilter !== 'all') {
+        filtered = filtered.filter(s => {
+            if (activeBaliRegionFilter === 'canggu') return s.regionGroup === 'canggu' || s.regionGroup === 'kuta';
+            if (activeBaliRegionFilter === 'sanur') return s.regionGroup === 'sanur' || s.regionGroup === 'kuta';
+            if (activeBaliRegionFilter === 'ubud') return s.regionGroup === 'ubud' || s.regionGroup === 'denpasar';
+            if (activeBaliRegionFilter === 'kintamani') return s.regionGroup === 'kintamani';
+            return true;
+        });
+    }
+
+    if (baliSearchQuery) {
+        filtered = filtered.filter(s =>
+            s.name.toLowerCase().includes(baliSearchQuery) ||
+            s.area.toLowerCase().includes(baliSearchQuery) ||
+            s.vibe.toLowerCase().includes(baliSearchQuery) ||
+            s.description.toLowerCase().includes(baliSearchQuery) ||
+            s.tags.some(t => t.toLowerCase().includes(baliSearchQuery))
+        );
+    }
+
+    return filtered;
+}
+
+function renderBaliSpotsModalGrid() {
+    const grid = document.getElementById('bali-modal-grid');
+    if (!grid) return;
+
+    const filtered = filterBaliSpots();
+    const favorites = getFavoriteBaliSpots();
+
+    if (filtered.length === 0) {
+        grid.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align: center; padding: 40px; background: var(--surface-card); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+                <p style="font-size: 16px; color: var(--text-muted); margin-bottom: 6px;">Spot tongkrongan tidak ditemukan.</p>
+                <p style="font-size: 13px; color: var(--text-dim);">Coba kata kunci lain atau pilih tab Semua Spot.</p>
+            </div>
+        `;
+        return;
+    }
+
+    grid.innerHTML = filtered.map(spot => {
+        const isFav = favorites.includes(spot.id);
+        return `
+            <div class="bali-spot-card">
+                <div class="bali-spot-img-wrapper">
+                    <img src="${spot.image}" alt="${escapeHtml(spot.name)}">
+                    <span class="bali-spot-badge-vibe">${spot.vibe}</span>
+                    <span class="bali-spot-location-tag">📍 ${escapeHtml(spot.area)}</span>
+                </div>
+                <div class="bali-spot-card-body">
+                    <h4>${escapeHtml(spot.name)}</h4>
+                    <div class="bali-spot-meta">
+                        <span>${spot.hours}</span> • <span>${spot.rating}</span>
+                    </div>
+                    <p class="bali-spot-desc">${escapeHtml(spot.description)}</p>
+                    <div class="bali-spot-tags">
+                        ${spot.tags.map(t => `<span class="bali-spot-tag-pill">${t}</span>`).join('')}
+                    </div>
+                    <div class="bali-spot-actions">
+                        <a href="${spot.mapsUrl}" target="_blank" rel="noopener noreferrer" class="btn-maps-link">
+                            <span>📍 Google Maps</span> &rarr;
+                        </a>
+                        <button class="btn-fav-spot ${isFav ? 'active' : ''}" onclick="toggleFavoriteBaliSpot('${spot.id}')" title="${isFav ? 'Hapus Favorit' : 'Simpan Favorit'}">
+                            ${isFav ? '★' : '☆'}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+function renderBaliQuickPreview() {
+    const container = document.getElementById('bali-spots-quick-preview');
+    if (!container) return;
+
+    const favorites = getFavoriteBaliSpots();
+    const topSpots = baliSpotsDatabase.slice(0, 3);
+
+    container.innerHTML = `
+        <div class="quick-preview-header">
+            <h4 style="font-size: 15px; color: #ffffff; font-weight: 700;">📍 Preview Spot Tongkrongan Bali:</h4>
+            <button class="btn-see-all-spots" onclick="openBaliModal()">Lihat Semua (6 Spot) &rarr;</button>
+        </div>
+        <div class="bali-spots-grid">
+            ${topSpots.map(spot => {
+                const isFav = favorites.includes(spot.id);
+                return `
+                    <div class="bali-spot-card">
+                        <div class="bali-spot-img-wrapper">
+                            <img src="${spot.image}" alt="${escapeHtml(spot.name)}">
+                            <span class="bali-spot-badge-vibe">${spot.vibe}</span>
+                            <span class="bali-spot-location-tag">📍 ${escapeHtml(spot.area)}</span>
+                        </div>
+                        <div class="bali-spot-card-body">
+                            <h4>${escapeHtml(spot.name)}</h4>
+                            <p class="bali-spot-desc" style="-webkit-line-clamp: 2;">${escapeHtml(spot.description)}</p>
+                            <div class="bali-spot-actions">
+                                <a href="${spot.mapsUrl}" target="_blank" rel="noopener noreferrer" class="btn-maps-link">
+                                    <span>📍 Maps</span> &rarr;
+                                </a>
+                                <button class="btn-fav-spot ${isFav ? 'active' : ''}" onclick="toggleFavoriteBaliSpot('${spot.id}')">
+                                    ${isFav ? '★' : '☆'}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('')}
+        </div>
+    `;
 }
 
