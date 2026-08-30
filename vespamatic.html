@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vespa Modern (Matic) - Scooter Garage</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body data-page="matic">
+    <header>
+        <div class="logo"> 
+            <img src="images/logo.jpeg" alt="logos"> 
+            <h1>VESPA</h1>
+        </div>
+       
+        <nav>
+            <a href="index.html#home">Home</a>
+            <a href="index.html#journal">Journal</a>
+            <a href="index.html#garage" class="active">Garage</a>
+            <a href="index.html#community">Community</a>
+            <a href="aboutus.html">About Us</a>
+        </nav>
+    </header>
+
+    <main class="article-page" style="max-width: 1100px;">
+        <div class="article-container" style="margin-bottom: 40px;">
+            <span class="badge" style="display:inline-block; margin-bottom: 16px;">SCOOTER GARAGE - MODERN MATIC</span>
+            <h1>Vespa Modern (Matic): Inovasi Teknologi &amp; Era Style Baru</h1>
+            
+            <div class="article-hero-img">
+                <img src="images/vespamatic.jpg" alt="Vespa Modern Matic">
+            </div>
+            
+            <p>
+                Vespa Modern Matic menggabungkan warisan desain Italia yang abadi dengan efisiensi dan kenyamanan teknologi masa kini. Dilengkapi mesin 4-tak berteknologi i-Get (Italian Green Experience Technology), pengereman ABS, serta sistem injeksi elektronik, Vespa matic menawarkan performa responsif dan ramah lingkungan untuk mobilitas harian perkotaan.
+            </p>
+            
+            <p>
+                Vespa Modern bukan hanya sekadar sarana transportasi harian, tetapi telah menjadi statement fashion dan simbol gaya hidup urban yang penuh percaya diri.
+            </p>
+        </div>
+
+        <!-- Matic Models Search & Interactive Catalog Header -->
+        <div style="margin-bottom: 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; background: var(--surface-card); padding: 20px 24px; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+            <div>
+                <h3 style="font-size: 20px; color: #fff; margin-bottom: 4px;">Katalog Line-up Vespa Modern (Matic)</h3>
+                <p style="font-size: 14px; color: var(--text-muted);">Klik salah satu tipe di bawah ini untuk melihat rincian spesifikasi teknis dan rekomendasi modifikasinya.</p>
+            </div>
+            <div class="garage-search-box">
+                <span class="garage-search-icon">🔍</span>
+                <input type="text" id="model-search-input" placeholder="Cari tipe Vespa Matic (contoh: Sprint, Primavera, GTS)...">
+            </div>
+        </div>
+
+        <!-- Dynamic Grid of Matic Models -->
+        <div id="vespa-catalog-grid" class="vespa-catalog-grid">
+            <!-- Dynamically populated by script.js -->
+        </div>
+
+        <div style="margin-top: 40px; text-align: center;">
+            <a href="index.html#garage" class="back-btn">&larr; Kembali ke Garage Utama</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 VESPA Street Culture &amp; Scooter Life. All rights reserved.</p>
+    </footer>
+</body>
+</html>

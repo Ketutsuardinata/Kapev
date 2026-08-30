@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why I Love Vespa - Street Culture & Scooter Life</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logo.jpeg" alt="logos">
+            <h1>VESPA</h1>
+        </div>
+
+        <nav>
+            <a href="#home" class="active">Home</a>
+            <a href="#journal">Journal</a>
+            <a href="#garage">Garage</a>
+            <a href="#community">Community</a>
+            <a href="aboutus.html">About Us</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <span class="badge">SCOOTER LIFE</span>
+            <h2>STREET CULTURE &amp; SCOOTER LIFE</h2>
+            <p>Bagaimana Vespa mengubah pandangan kamu terhadap kendaraan roda dua.</p>
+            <div class="beranda">
+                <img src="images/vespasprint.jpg" alt="vespasprint">
+            </div>
+            <a href="#journal"><button>EXPLORE!!</button></a>
+        </section>
+
+        <section id="journal">
+            <div class="section-header">
+                <h2 class="section-title">HIDUP JALANAN!!</h2>
+                <p class="section-subtitle">Cerita vespa Menjadi raja kendaraan roda dua(menurut kamu).</p>
+            </div>
+
+            <div class="journal-grid">
+                <a href="vespamalam.html" style="text-decoration: none; color: inherit; display: block;">
+                    <article>
+                        <div>
+                            <h3>Pesona Vespa matic di malam hari</h3>
+                            <p>Bayangkan anda keluar ke jalanan menggunakan Vespa!!!</p>
+                        </div>
+                        <span class="read-more">Baca Selengkapnya</span>
+                    </article>
+                </a>
+
+                <a href="fashion.html" style="text-decoration: none; color: inherit; display: block;">
+                    <article>
+                        <div>
+                            <h3>Fashion Streetwear &amp; Vespa</h3>
+                            <p>Dari helm vintage sampai jaket parka, ini dia style lokal anak vespa...</p>
+                        </div>
+                        <span class="read-more">Baca Selengkapnya</span>
+                    </article>
+                </a>
+            </div>
+        </section>
+
+        <section id="garage">
+            <div class="section-header">
+                <h2 class="section-title">Scooter Garage &amp; Catalog</h2>
+                <p class="section-subtitle">Pilih kategori atau jelajahi ragam tipe Vespa ikonik dari era 2-Tak hingga
+                    Modern Matic.</p>
+            </div>
+
+            <!-- Category Hero Selector Cards -->
+            <div class="garage-category-hero">
+                <div class="category-hero-card" data-category-filter="classic">
+                    <div>
+                        <span class="category-badge-pill">🛵 Kategori Classic 2-Tak</span>
+                        <h3>Vespa Classic (2-Tak)</h3>
+                        <p>Sensasi mesin kanan, aroma oli samping, dan transmisi manual stang yang legendaris.</p>
+                    </div>
+                    <div class="category-card-footer">
+                        <span class="category-count">6 Model Populer</span>
+                        <a href="vespaclassic.html" class="read-more">Halaman Khusus &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="category-hero-card" data-category-filter="matic">
+                    <div>
+                        <span class="category-badge-pill">⚡ Kategori Modern Matic</span>
+                        <h3>Vespa Modern (Matic)</h3>
+                        <p>Teknologi i-Get 4-tak modern, pengereman ABS, performa halus dan gaya urban masa kini.</p>
+                    </div>
+                    <div class="category-card-footer">
+                        <span class="category-count">6 Line-up Modern</span>
+                        <a href="vespamatic.html" class="read-more">Halaman Khusus &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Filter Tabs & Search Bar -->
+            <div class="garage-controls-wrapper">
+                <div class="garage-tabs">
+                    <button class="tab-btn active" data-filter="all">
+                        <span>🌐 Semua Tipe</span>
+                    </button>
+                    <button class="tab-btn" data-filter="classic">
+                        <span>🛵 Classic (2-Tak)</span>
+                    </button>
+                    <button class="tab-btn" data-filter="matic">
+                        <span>⚡ Modern (Matic)</span>
+                    </button>
+                </div>
+
+                <div class="garage-search-box">
+                    <span class="garage-search-icon">🔍</span>
+                    <input type="text" id="model-search-input" placeholder="Cari tipe (contoh: PX, Sprint, GTS)...">
+                </div>
+            </div>
+
+            <!-- Dynamic Model Catalog Grid -->
+            <div id="vespa-catalog-grid" class="vespa-catalog-grid">
+                <!-- Dynamically populated by script.js -->
+            </div>
+        </section>
+
+        <section id="community">
+            <div class="section-header">
+                <h2 class="section-title">Street Community</h2>
+                <p class="section-subtitle">Tempat kumpul dan jadwal Sunmori.</p>
+            </div>
+
+            <div class="community-layout">
+                <div class="community-info-box">
+                    <div class="community-info">
+                        <span class="spot-badge">REKOMENDASI SPOT</span>
+                        <h3>Spot Tongkrongan Keren</h3>
+                        <p>Kopi Jalanan Corner - Buka setiap malam akhir pekan.</p>
+                    </div>
+
+                    <div id="community-list" class="community-list">
+
+                    </div>
+                </div>
+<<<<<<< HEAD
+
+                <form action="https://formspree.io/f/xjyvkyer" method="post">
+ <h3>Gabung Komunitas</h3>
+
+    <label for="nama">Nama Pengendara:</label>
+    <input type="text" id="nama" name="nama" placeholder="Masukkan namamu" required>
+
+    <label for="tipe">Tipe Vespa:</label>
+    <input type="text" id="tipe" name="tipe" placeholder="Contoh: PX 150 / Sprint Matic" required>
+
+    <button type="submit">Kirim Data</button>
+</form>
+=======
+                <div>
+                <form action="https://formspree.io/f/xjyvkyer" method="post">
+                    <h3>Gabung Komunitas</h3>
+
+                    <label for="nama">Nama Pengendara:</label>
+                    <input type="text" id="nama" name="nama" placeholder="Masukkan namamu" required>
+
+                    <label for="tipe">Tipe Vespa:</label>
+                    <input type="text" id="tipe" name="tipe" placeholder="Contoh: PX 150 / Sprint Matic" required>
+
+                    <button type="submit">Kirim Data</button>
+                </form>
+>>>>>>> b09e89d (update formspree)
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 VESPA Street Culture & Scooter Life. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

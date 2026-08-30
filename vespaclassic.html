@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vespa Classic (2-Tak) - Scooter Garage</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body data-page="classic">
+    <header>
+        <div class="logo"> 
+            <img src="images/logo.jpeg" alt="logos"> 
+            <h1>VESPA</h1>
+        </div>
+       
+        <nav>
+            <a href="index.html#home">Home</a>
+            <a href="index.html#journal">Journal</a>
+            <a href="index.html#garage" class="active">Garage</a>
+            <a href="index.html#community">Community</a>
+            <a href="aboutus.html">About Us</a>
+        </nav>
+    </header>
+
+    <main class="article-page" style="max-width: 1100px;">
+        <div class="article-container" style="margin-bottom: 40px;">
+            <span class="badge" style="display:inline-block; margin-bottom: 16px;">SCOOTER GARAGE - CLASSIC 2-TAK</span>
+            <h1>Vespa Classic (2-Tak): Pesona Mesin Kanan &amp; Sejarah Otentik</h1>
+            
+            <div class="article-hero-img">
+                <img src="images/vespaclassic.jpg" alt="Vespa Classic 2-Tak">
+            </div>
+            
+            <p>
+                Vespa Classic 2-Tak adalah mahakarya legendaris asal Italia yang telah mengaspal selama puluhan tahun. Ciri khas mesin kanan yang berkarakter, transmisi manual di stang kiri, serta aroma khas oli samping dan suara knalpot yang garing menjadikan Vespa 2-tak bukan sekadar alat transportasi, melainkan bagian dari sejarah dan jiwa budaya jalanan.
+            </p>
+            
+            <p>
+                Merawat Vespa 2-Tak mengajarkan kesabaran dan keakraban dengan mesin. Dari sinilah lahir rasa solidaritas tinggi antar sesama pengendara "mesin kanan" di jalanan—yang selalu siap saling membantu jika terjadi kendala.
+            </p>
+        </div>
+
+        <!-- Classic Models Search & Interactive Catalog Header -->
+        <div style="margin-bottom: 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; background: var(--surface-card); padding: 20px 24px; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+            <div>
+                <h3 style="font-size: 20px; color: #fff; margin-bottom: 4px;">Katalog Tipe Vespa Classic (2-Tak)</h3>
+                <p style="font-size: 14px; color: var(--text-muted);">Klik salah satu tipe di bawah ini untuk melihat rincian spesifikasi teknis dan gaya modifikasinya.</p>
+            </div>
+            <div class="garage-search-box">
+                <span class="garage-search-icon">🔍</span>
+                <input type="text" id="model-search-input" placeholder="Cari tipe Vespa Classic (contoh: PX, Super, PTS)...">
+            </div>
+        </div>
+
+        <!-- Dynamic Grid of Classic Models -->
+        <div id="vespa-catalog-grid" class="vespa-catalog-grid">
+            <!-- Dynamically populated by script.js -->
+        </div>
+
+        <div style="margin-top: 40px; text-align: center;">
+            <a href="index.html#garage" class="back-btn">&larr; Kembali ke Garage Utama</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 VESPA Street Culture &amp; Scooter Life. All rights reserved.</p>
+    </footer>
+</body>
+</html>
