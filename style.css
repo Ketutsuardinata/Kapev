@@ -50,19 +50,27 @@ body {
 ::-webkit-scrollbar {
   width: 10px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--bg-color);
 }
+
 ::-webkit-scrollbar-thumb {
   background: #252b36;
   border-radius: var(--radius-full);
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-color);
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 800;
   letter-spacing: -0.02em;
@@ -137,7 +145,8 @@ nav a {
   letter-spacing: 0.5px;
 }
 
-nav a:hover, nav a.active {
+nav a:hover,
+nav a.active {
   color: #ffffff;
   background-color: rgba(230, 55, 70, 0.15);
   border: 1px solid var(--border-accent);
@@ -630,7 +639,7 @@ section {
   display: flex;
   align-items: center;
   gap: 14px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.8), var(--shadow-glow);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), var(--shadow-glow);
   z-index: 9999;
   transform: translateY(100px);
   opacity: 0;
@@ -697,7 +706,7 @@ section {
   transform: scale(0.8);
   transition: var(--transition);
   z-index: 999;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
 .back-to-top.visible {
@@ -753,7 +762,7 @@ section {
   overflow: hidden;
   margin: 20px 0 30px;
   border: 1px solid var(--border-color);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 }
 
 .article-hero-img img {
@@ -1297,7 +1306,7 @@ footer p {
   header {
     padding: 16px 20px;
   }
-  
+
   .mobile-toggle {
     display: block;
   }
@@ -1340,11 +1349,6 @@ footer p {
   }
 }
 
-/* ==========================================================================
-   Bali Spots Tongkrongan Interactive Styling & Modal
-   ========================================================================== */
-
-/* Clickable Trigger Card */
 .community-info#spot-bali-trigger {
   background: linear-gradient(135deg, rgba(24, 29, 39, 0.95) 0%, rgba(32, 39, 53, 0.95) 100%);
   border: 1px solid var(--border-accent);
@@ -1398,7 +1402,7 @@ footer p {
   transform: translateX(4px);
 }
 
-/* Quick Preview Header & Grid */
+
 .bali-spots-quick-preview {
   margin-bottom: 24px;
   background-color: var(--surface-card);
@@ -1479,7 +1483,8 @@ footer p {
   transition: var(--transition);
 }
 
-.bali-tab-btn:hover, .bali-tab-btn.active {
+.bali-tab-btn:hover,
+.bali-tab-btn.active {
   background-color: var(--accent-color);
   border-color: var(--accent-color);
   color: #ffffff;
@@ -1659,7 +1664,8 @@ footer p {
   transition: var(--transition);
 }
 
-.btn-fav-spot:hover, .btn-fav-spot.active {
+.btn-fav-spot:hover,
+.btn-fav-spot.active {
   background-color: rgba(255, 215, 0, 0.15);
   border-color: #ffd700;
   color: #ffd700;

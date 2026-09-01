@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Vespa Street Culture</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <style>
+        .about-us {
+            padding: 80px 5% 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-us::before {
+            content: "VESPA";
+            position: absolute;
+            right: -20px;
+            bottom: -30px;
+            font-size: clamp(100px, 18vw, 220px);
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.02);
+            transform: rotate(-6deg);
+            pointer-events: none;
+            user-select: none;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .about-container {
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-label {
+            color: var(--accent-color);
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            padding-top: 12px;
+            border-top: 2px solid var(--accent-color);
+            height: fit-content;
+        }
+
+        .about-content h1 {
+            font-size: clamp(42px, 7vw, 84px);
+            line-height: 0.95;
+            margin-bottom: 36px;
+            font-weight: 900;
+            letter-spacing: -2px;
+        }
+
+        .about-content h1 span {
+            color: var(--accent-color);
+        }
+
+        .about-content p {
+            max-width: 750px;
+            color: var(--text-muted);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 22px;
+        }
+
+        .about-purpose {
+            margin-top: 40px;
+            padding: 28px 32px;
+            border-left: 4px solid var(--accent-color);
+            background: var(--surface-card);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            box-shadow: var(--shadow-main);
+        }
+
+        .about-purpose strong {
+            color: var(--accent-color);
+            font-size: 13px;
+            letter-spacing: 3px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .about-purpose span {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .social-links-wrapper {
+            margin-top: 40px;
+        }
+
+        .social-links-wrapper h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 18px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 24px;
+            background: var(--surface-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-btn svg {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .social-btn:hover {
+            transform: translateY(-4px);
+        }
+
+        .social-btn:hover svg {
+            transform: scale(1.2);
+        }
+
+        .social-btn.instagram:hover {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            border-color: transparent;
+            color: #ffffff;
+            box-shadow: 0 8px 25px rgba(220, 39, 67, 0.45);
+        }
+
+        .social-btn.gmail:hover {
+            background: #ea4335;
+            border-color: transparent;
+            color: #ffffff;
+            box-shadow: 0 8px 25px rgba(234, 67, 53, 0.45);
+        }
+
+        .social-btn.whatsapp:hover {
+            background: #25d366;
+            border-color: transparent;
+            color: #ffffff;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.45);
+        }
+
+        @media (max-width: 768px) {
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .about-us {
+                padding: 50px 20px;
+            }
+
+            .social-icons {
+                flex-direction: column;
+            }
+
+            .social-btn {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logo.jpeg" alt="logos">
+            <h1>VESPA</h1>
+        </div>
+
+        <nav>
+            <a href="index.html#home">Home</a>
+            <a href="index.html#journal">Journal</a>
+            <a href="index.html#garage">Garage</a>
+            <a href="index.html#community">Community</a>
+            <a href="aboutme.html" class="active">About Me</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="about-us">
+            <div class="about-container">
+                <div class="about-label">
+                    ABOUT ME
+                </div>
+
+                <div class="about-content">
+                    <h1>
+                        MORE THAN<br>
+                        JUST A <span>RIDE.</span>
+                    </h1>
+
+                    <p>
+                        Website ini dibuat sebagai ruang digital pribadi bagi saya untuk membagikan kecintaan terhadap
+                        dunia Vespa, kehidupan jalanan, dan budaya komunitas yang tumbuh di dalamnya.
+                    </p>
+
+                    <p>
+                        Bagi saya, Vespa bukan hanya sekadar kendaraan roda dua. Vespa adalah bagian dari gaya hidup,
+                        simbol kebebasan, serta media untuk membangun koneksi dengan orang-orang yang memiliki passion
+                        serupa.
+                    </p>
+
+                    <p>
+                        Melalui website ini, saya ingin membagikan berbagai cerita, informasi, inspirasi modifikasi,
+                        serta nilai-nilai otentik dalam dunia Vespa. Semoga website ini dapat memberikan wawasan dan
+                        menginspirasi sesama pecinta skuter!
+                    </p>
+
+                    <div class="about-purpose">
+                        <strong>MY PURPOSE</strong>
+                        <span>
+                            Connecting people through Vespa, streets &amp; culture.
+                        </span>
+                    </div>
+
+                    <div class="social-links-wrapper">
+                        <h3>Hubungi & &amp; Ikuti Sosial media Saya</h3>
+                        <div class="social-icons">
+                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+                                class="social-btn instagram" title="Instagram">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                </svg>
+                                <span>Instagram</span>
+                            </a>
+
+                            <a href="mailto:ketutsuardinata4@gmail.com" target="_blank" rel="noopener noreferrer"
+                                class="social-btn gmail" title="Gmail">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                    </path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                                <span>Gmail</span>
+                            </a>
+
+                            <a href="https://wa.me/6287764285915" target="_blank" rel="noopener noreferrer"
+                                class="social-btn whatsapp" title="WhatsApp">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                                    </path>
+                                </svg>
+                                <span>WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 VESPA Street Culture &amp; Scooter Life. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
