@@ -367,7 +367,7 @@ function initGarageCatalog() {
             tabBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             activeGarageFilter = btn.dataset.filter || 'all';
-            
+
             // Also update category hero cards if available
             updateHeroCardsHighlight(activeGarageFilter);
             renderVespaCatalog();
@@ -678,7 +678,7 @@ const baliSpotsDatabase = [
         regionGroup: 'canggu',
         vibe: '☕ Coffee & Custom Culture',
         hours: '🕒 07.00 - 23.00 WITA',
-        image: 'images/vespasprint.jpg',
+        image: 'images/deus.jpg',
         rating: '⭐ 4.9 (Sangat Ramai Weekend)',
         description: 'Spot kumpul paling hits bagi anak Vespa matic & custom di kawasan Canggu. Cafe bernuansa tropical, workshop custom, dan live music malam minggu.',
         tags: ['#CangguVibes', '#CustomVespa', '#CoffeeChill', '#LiveMusic'],
@@ -691,7 +691,7 @@ const baliSpotsDatabase = [
         regionGroup: 'kuta',
         vibe: '🌅 Sunset & Beach Night Ride',
         hours: '🕒 16.30 - 22.00 WITA',
-        image: 'images/vespamatic.jpg',
+        image: 'images/kuta.jpg',
         rating: '⭐ 4.8 (Favorit Senja)',
         description: 'Titik kumpul favorit keliling (rolling ride) sore hari menyusuri pesisir pantai Kuta & Seminyak sambil menikmati sunset spektakuler Pulau Dewata.',
         tags: ['#SunsetRide', '#BeachVibes', '#NightRide', '#KelapaMuda'],
@@ -704,7 +704,7 @@ const baliSpotsDatabase = [
         regionGroup: 'sanur',
         vibe: '☕ Morning Sunmori & Chill',
         hours: '🕒 06.00 - 11.00 WITA',
-        image: 'images/vespaclassic.jpg',
+        image: 'images/sanur.jpg',
         rating: '⭐ 4.9 (Sunmori Hub)',
         description: 'Basecamp Sunmori (Sunday Morning Ride) tepi pantai Sanur. Tempat favorit menikmati kopi Bali, nasi jinggo hangat, dan terbitnya matahari pagi.',
         tags: ['#SunmoriSanur', '#KopiBali', '#VespaClassic', '#SunriseRide'],
@@ -717,7 +717,7 @@ const baliSpotsDatabase = [
         regionGroup: 'ubud',
         vibe: '🌿 Nature Ride & Vintage Vespa',
         hours: '🕒 08.00 - 21.00 WITA',
-        image: 'images/vespa_super150.jpg',
+        image: 'images/ubud.jpg',
         rating: '⭐ 4.7 (Classic & Serene)',
         description: 'Rute touring dan spot santai komunitas Vespa 2-Tak di Ubud. Dikelilingi persawahan hijau, udara segar pedesaan, dan kedai kopi bernuansa artistik.',
         tags: ['#UbudScooter', '#Vespa2Tak', '#NatureTouring', '#ArtCafe'],
@@ -981,8 +981,8 @@ function renderBaliQuickPreview() {
         </div>
         <div class="bali-spots-grid">
             ${topSpots.map(spot => {
-                const isFav = favorites.includes(spot.id);
-                return `
+        const isFav = favorites.includes(spot.id);
+        return `
                     <div class="bali-spot-card">
                         <div class="bali-spot-img-wrapper">
                             <img src="${spot.image}" alt="${escapeHtml(spot.name)}">
@@ -1003,7 +1003,7 @@ function renderBaliQuickPreview() {
                         </div>
                     </div>
                 `;
-            }).join('')}
+    }).join('')}
         </div>
     `;
 }
